@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vmCart"
+            type="com.hiren.practicaltest.viewmodel.CartViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="companion"
+            type="com.hiren.practicaltest.utils.BindingAdapters.Companion" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_back"
+            style="@style/image_button"
+            android:layout_margin="@dimen/app_default_margin"
+            android:contentDescription="@string/hint_back"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_item"
+            style="@style/recyclerview_style"
+            android:visibility="@{vmCart.obsCartContent.equalsIgnoreCase(companion.CONTENT) ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/csl_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_back"
+            tools:listitem="@layout/raw_cart_list" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/accent"
+            android:visibility="@{vmCart.obsCartContent.equalsIgnoreCase(companion.PROGRESS) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/csl_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_back" />
+
+        <TextView
+            android:id="@+id/tv_no_data"
+            style="@style/text_no_data"
+            android:visibility="@{vmCart.obsCartContent.equalsIgnoreCase(companion.NO_DATA) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/csl_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_back" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/csl_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:background="@drawable/bg_top_rounded_corner"
+            android:elevation="4dp"
+            android:padding="@dimen/app_default_margin"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <!-- Total Amount-->
+            <TextView
+                android:id="@+id/tv_lbl_total_amount"
+                style="@style/label_text"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/lbl_total_amount"
+                app:layout_constraintEnd_toStartOf="@+id/tv_lbl_total_quantity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_val_total_amount"
+                style="@style/value_text"
+                android:text="@string/lbl_default_amount"
+                app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_amount"
+                app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_amount"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_amount" />
+
+            <!-- Total quantity-->
+            <TextView
+                android:id="@+id/tv_lbl_total_quantity"
+                style="@style/label_text"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@string/lbl_total_quantity"
+                app:layout_constraintEnd_toStartOf="@+id/btn_checkout"
+                app:layout_constraintStart_toEndOf="@+id/tv_lbl_total_amount"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_val_total_quantity"
+                style="@style/value_text"
+                android:text="@string/lbl_default_qty"
+                app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_quantity"
+                app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_quantity"
+                app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_quantity" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_checkout"
+                style="@style/normal_button"
+                android:fontFamily="@font/bold"
+                android:paddingStart="@dimen/_14sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_14sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/lbl_checkout"
+                android:textSize="@dimen/_12sdp"
+                app:backgroundTint="@color/accent"
+                app:icon="@drawable/ic_checkout"
+                app:iconGravity="textEnd"
+                app:iconSize="@dimen/_14sdp"
+                app:iconTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

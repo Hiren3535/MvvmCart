@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_image">150dp</dimen>
+    <dimen name="app_default_margin">@dimen/_12sdp</dimen>
+    <dimen name="app_double_default_margin">@dimen/_23sdp</dimen>
+    <dimen name="default_corner_radius">@dimen/_10sdp</dimen>
+</resources>

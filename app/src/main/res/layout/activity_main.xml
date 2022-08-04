@@ -1,18 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.MainActivity">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            style="@style/title_text"
+            android:layout_margin="0dp"
+            android:fontFamily="@font/regular"
+            android:paddingTop="0dp"
+            android:text="@string/lbl_perfect_choice"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+        <ImageView
+            android:id="@+id/img_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/app_default_margin"
+            android:layout_marginEnd="@dimen/app_double_default_margin"
+            android:background="?selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_shopping_cart"
+            android:translationZ="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_subtitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_online_order_badge"
+            style="@style/title_text"
+            android:visibility="gone"
+            app:layout_constraintCircle="@+id/img_cart"
+            app:layout_constraintCircleAngle="315"
+            app:layout_constraintCircleRadius="24dp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/ed_search"
+            style="@style/search_edit_text"
+            app:layout_constraintEnd_toStartOf="@+id/img_filter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
+
+        <ImageView
+            android:id="@+id/img_filter"
+            style="@style/image_button"
+            android:contentDescription="@string/hint_filter"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintBottom_toBottomOf="@+id/ed_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ed_search"
+            app:layout_constraintTop_toTopOf="@+id/ed_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rec_item"
+            style="@style/recyclerview_style"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_search"
+            tools:listitem="@layout/raw_item_list" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
