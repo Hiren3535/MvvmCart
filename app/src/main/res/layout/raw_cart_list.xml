@@ -4,6 +4,13 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.hiren.practicaltest.data.entity.ItemEntity" />
+
+        <variable
+            name="companion"
+            type="com.hiren.practicaltest.utils.BindingAdapters.Companion" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -24,10 +31,10 @@
                 app:actualImageScaleType="centerCrop"
                 app:fadeDuration="0"
                 app:failureImage="@drawable/bg_failure"
+                app:imageUrl="@{item.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:loadImage='@{"http://www.goodmorningimagesdownload.com/wp-content/uploads/2019/12/Love-Images-1.jpg"}'
                 app:placeholderImage="@drawable/bg_placeholder"
                 app:progressBarImage="@drawable/bg_progress"
                 app:roundedCornerRadius="@dimen/default_corner_radius"
@@ -37,10 +44,11 @@
                 android:id="@+id/tv_item_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/bold"
                 android:maxLines="2"
+                android:text="@{item.name}"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +62,8 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/regular"
-                android:maxLines="3"
+                android:maxLines="1"
+                android:text="@{item.description}"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/_11sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,26 +74,28 @@
                 android:id="@+id/tv_item_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/bold"
                 android:maxLines="2"
+                android:text="@{companion.FormattedfractionValue(item.amount)}"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/lin_qty"
                 app:layout_constraintEnd_toStartOf="@+id/lin_qty"
                 app:layout_constraintStart_toStartOf="@+id/tv_item_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
+                app:layout_constraintTop_toTopOf="@+id/lin_qty" />
 
             <LinearLayout
                 android:id="@+id/lin_qty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
                 android:background="@drawable/bg_normal"
                 android:orientation="horizontal"
                 android:padding="@dimen/_4sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_item_amount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_item_amount">
+                app:layout_constraintStart_toEndOf="@+id/tv_item_amount"
+                app:layout_constraintTop_toBottomOf="@+id/tv_item_description">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_plus"
@@ -102,12 +113,14 @@
                     android:maxLines="1"
                     android:paddingStart="@dimen/_7sdp"
                     android:paddingEnd="@dimen/_7sdp"
+                    android:text='@{item.quantity+""}'
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/_12sdp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_minus"
                     style="@style/quantity_button"
+                    android:enabled="@{item.quantity > 1 }"
                     app:icon="@drawable/ic_minus" />
             </LinearLayout>
 

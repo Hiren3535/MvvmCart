@@ -14,6 +14,8 @@
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/bg_top_rounded_corner.xml" value="0.1655" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_back.xml" value="0.1655" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_checkout.xml" value="0.1655" />
+        <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_close.xml" value="0.1655" />
+        <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_delete.xml" value="0.1655" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_error.xml" value="0.135" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_filter.xml" value="0.186" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/ic_image.xml" value="0.1655" />
@@ -29,9 +31,11 @@
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/drawable/thumb_drawable.xml" value="0.186" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/font/bold.xml" value="0.28020833333333334" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/activity_main.xml" value="0.46647230320699706" />
+        <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/dialog_checkout.xml" value="0.25" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/fragment_invoice.xml" value="0.25" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/raw_cart_list.xml" value="0.45819935691318325" />
+        <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/raw_invoice_item_list.xml" value="0.25" />
         <entry key="..\:/Android/project/SLSPracticalTest/app/src/main/res/layout/raw_item_list.xml" value="0.5038639876352395" />
       </map>
     </option>

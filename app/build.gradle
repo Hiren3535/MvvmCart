@@ -41,6 +41,8 @@ dependencies {
     def sdp = "1.0.6"
     def room = "1.1.1"
     def lifecycle = "1.1.1"
+    def gson = "2.8.9"
+    def room_version = "2.3.0"
 
     implementation 'androidx.core:core-ktx:1.8.0'
 
@@ -57,10 +59,16 @@ dependencies {
 
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     // Room components
-    implementation "android.arch.persistence.room:runtime:$room"
-    annotationProcessor "android.arch.persistence.room:compiler:$room"
+    //implementation "android.arch.persistence.room:runtime:$room"
+    //annotationProcessor "android.arch.persistence.room:compiler:$room"
+    implementation "androidx.room:room-ktx:2.4.3"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Gson
+    implementation "com.google.code.gson:gson:$gson"
 
     // Testing
     //testImplementation 'junit:junit:4.13.2'

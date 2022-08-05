@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.hiren.practicaltest.data.entity.ItemEntity
-import com.hiren.practicaltest.databinding.RawItemListBinding
+import com.hiren.practicaltest.databinding.RawCartListBinding
 import com.hiren.practicaltest.utils.BindingAdapters
 
-class ItemAdapter(private val listener: (ItemEntity, Int, Int) -> Unit) :
+class CartAdapter(private val listener: (ItemEntity, Int, Int) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemList = mutableListOf<ItemEntity>()
@@ -66,7 +66,7 @@ class ItemAdapter(private val listener: (ItemEntity, Int, Int) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            RawItemListBinding.inflate(
+            RawCartListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -74,7 +74,7 @@ class ItemAdapter(private val listener: (ItemEntity, Int, Int) -> Unit) :
         )
     }
 
-    inner class ViewHolder(private val binding: RawItemListBinding) :
+    inner class ViewHolder(private val binding: RawCartListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: ItemEntity,
@@ -82,10 +82,10 @@ class ItemAdapter(private val listener: (ItemEntity, Int, Int) -> Unit) :
         ) {
             binding.item = item
             binding.companion = BindingAdapters.Companion
-            binding.btnBuy.setOnClickListener {
+            binding.btnPlus.setOnClickListener {
                 listener.invoke(item, adapterPosition, 1)
             }
-            binding.btnDelete.setOnClickListener {
+            binding.btnMinus.setOnClickListener {
                 listener.invoke(item, adapterPosition, 2)
             }
         }

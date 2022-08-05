@@ -4,12 +4,22 @@
 
     <data>
 
+        <variable
+            name="item"
+            type="com.hiren.practicaltest.data.entity.ItemEntity" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="companion"
+            type="com.hiren.practicaltest.utils.BindingAdapters.Companion" />
     </data>
 
     <androidx.cardview.widget.CardView
         style="@style/cart_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,16 +30,16 @@
                 android:id="@+id/img_item"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="0dp"
-                app:fadeDuration="0"
                 android:background="@drawable/bg_normal"
+                app:actualImageScaleType="centerCrop"
+                app:fadeDuration="0"
                 app:failureImage="@drawable/bg_failure"
+                app:imageUrl="@{item.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:placeholderImage="@drawable/bg_placeholder"
-                app:actualImageScaleType="centerCrop"
                 app:progressBarImage="@drawable/bg_progress"
-                app:loadImage='@{"http://www.goodmorningimagesdownload.com/wp-content/uploads/2019/12/Love-Images-1.jpg"}'
                 app:roundedCornerRadius="@dimen/default_corner_radius"
                 app:viewAspectRatio="1.25" />
 
@@ -37,11 +47,11 @@
                 android:id="@+id/tv_item_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_7sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/bold"
                 android:maxLines="2"
-                android:text="Item Name here..."
+                android:text="@{item.name}"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,8 +65,8 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:ellipsize="end"
                 android:fontFamily="@font/regular"
-                android:maxLines="3"
-                android:text="Item description here..."
+                android:maxLines="2"
+                android:text="@{item.description}"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/_11sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,27 +77,45 @@
                 android:id="@+id/tv_item_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:ellipsize="end"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:fontFamily="@font/bold"
                 android:maxLines="2"
-                android:text="$120.00"
+                android:text="@{companion.FormattedfractionValue(item.amount)}"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/_14sdp"
-                app:layout_constraintEnd_toStartOf="@+id/btn_submit"
+                app:layout_constraintEnd_toStartOf="@+id/btn_delete"
                 app:layout_constraintStart_toStartOf="@+id/tv_item_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_submit"
+                android:id="@+id/btn_delete"
+                style="@style/normal_button"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text=""
+                android:visibility="@{item.isSelected ? View.VISIBLE :View.GONE}"
+                app:backgroundTint="@color/accent"
+                app:icon="@drawable/ic_delete"
+                app:iconPadding="0dp"
+                app:iconSize="@dimen/_15sdp"
+                app:iconTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_item_amount"
+                app:layout_constraintEnd_toStartOf="@+id/btn_buy"
+                app:layout_constraintStart_toEndOf="@+id/tv_item_amount" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_buy"
                 style="@style/normal_button"
                 android:paddingStart="@dimen/_15sdp"
                 android:paddingEnd="@dimen/_15sdp"
                 android:text="@string/lbl_buy"
+                android:visibility="@{item.isSelected ? View.GONE :View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_item_amount"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_item_amount"
-                app:layout_constraintTop_toTopOf="@+id/tv_item_amount" />
+                app:layout_constraintStart_toEndOf="@+id/btn_delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

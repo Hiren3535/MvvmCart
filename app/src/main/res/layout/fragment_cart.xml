@@ -19,7 +19,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background"
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/img_back"
@@ -55,6 +58,7 @@
         <TextView
             android:id="@+id/tv_no_data"
             style="@style/text_no_data"
+            android:text="@string/no_data_in_cart"
             android:visibility="@{vmCart.obsCartContent.equalsIgnoreCase(companion.NO_DATA) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/csl_bottom"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,10 +71,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_3sdp"
             android:layout_marginEnd="@dimen/_3sdp"
+            android:animateLayoutChanges="true"
             android:background="@drawable/bg_top_rounded_corner"
             android:elevation="4dp"
             android:padding="@dimen/app_default_margin"
             android:translationZ="4dp"
+            android:visibility="@{vmCart.obsCartContent.equalsIgnoreCase(companion.CONTENT) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -81,6 +87,7 @@
                 style="@style/label_text"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:text="@string/lbl_total_amount"
+                app:layout_constraintHorizontal_weight="0.7"
                 app:layout_constraintEnd_toStartOf="@+id/tv_lbl_total_quantity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -88,7 +95,7 @@
             <TextView
                 android:id="@+id/tv_val_total_amount"
                 style="@style/value_text"
-                android:text="@string/lbl_default_amount"
+                android:text="@{companion.FormattedfractionValue(vmCart.obsTotalAmount)}"
                 app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_amount"
                 app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_amount"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_amount" />
@@ -100,6 +107,7 @@
                 android:layout_marginStart="@dimen/_7sdp"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:text="@string/lbl_total_quantity"
+                app:layout_constraintHorizontal_weight="0.3"
                 app:layout_constraintEnd_toStartOf="@+id/btn_checkout"
                 app:layout_constraintStart_toEndOf="@+id/tv_lbl_total_amount"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -107,7 +115,7 @@
             <TextView
                 android:id="@+id/tv_val_total_quantity"
                 style="@style/value_text"
-                android:text="@string/lbl_default_qty"
+                android:text='@{vmCart.obsQuantity+""}'
                 app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_quantity"
                 app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_quantity"
                 app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_quantity" />

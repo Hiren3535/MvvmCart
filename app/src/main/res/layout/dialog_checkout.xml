@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vmCart"
+            type="com.hiren.practicaltest.viewmodel.CartViewModel" />
+
+        <variable
+            name="companion"
+            type="com.hiren.practicaltest.utils.BindingAdapters.Companion" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            style="@style/cart_style"
+            android:layout_width="@dimen/_300sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    style="@style/image_button"
+                    android:layout_margin="@dimen/app_default_margin"
+                    android:contentDescription="@string/hint_back"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_invoice_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/app_default_margin"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/bold"
+                    android:maxLines="1"
+                    android:text="@string/lbl_checkout"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_back"
+                    app:layout_constraintEnd_toStartOf="@+id/img_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/img_back" />
+
+                <View
+                    android:id="@+id/divider_top"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/app_default_margin"
+                    android:alpha="0.4"
+                    android:background="@color/text_secondary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_back" />
+
+                <TextView
+                    android:id="@+id/tv_item_discount_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/app_default_margin"
+                    android:layout_marginTop="@dimen/app_default_margin"
+                    android:layout_marginEnd="@dimen/app_default_margin"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/lbl_discount_type"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_top" />
+
+                <RadioGroup
+                    android:id="@+id/rad_discount_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_item_discount_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_item_discount_type"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_item_discount_type">
+
+                    <RadioButton
+                        android:id="@+id/rab_fixed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:fontFamily="@font/regular"
+                        android:text="@string/lbl_fixed"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <RadioButton
+                        android:id="@+id/rab_percentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/regular"
+                        android:text="@string/lbl_percentage"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_14sdp" />
+                </RadioGroup>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_discount_amount"
+                    style="@style/inputLayout"
+                    android:hint="@string/lbl_discount_amount"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_item_discount_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_item_discount_type"
+                    app:layout_constraintTop_toBottomOf="@+id/rad_discount_type">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_discount_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_secondary"
+                        android:textSize="@dimen/_14sdp"
+                        app:hintTextColor="@color/text_secondary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ti_received_amount"
+                    style="@style/inputLayout"
+                    android:layout_marginTop="@dimen/app_default_margin"
+                    android:hint="@string/lbl_received_amount"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_item_discount_type"
+                    app:layout_constraintStart_toStartOf="@+id/tv_item_discount_type"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_discount_amount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ed_received_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_secondary"
+                        android:textSize="@dimen/_14sdp"
+                        app:hintTextColor="@color/text_secondary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Total Payable-->
+                <TextView
+                    android:id="@+id/tv_lbl_total_payable"
+                    style="@style/label_text"
+                    android:layout_marginTop="@dimen/app_default_margin"
+                    android:text="@string/lbl_payable"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_lbl_total_remaining"
+                    app:layout_constraintHorizontal_weight="0.7"
+                    app:layout_constraintStart_toStartOf="@+id/tv_item_discount_type"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_received_amount" />
+
+                <TextView
+                    android:id="@+id/tv_val_total_payable"
+                    style="@style/value_text"
+                    android:text="@{companion.FormattedfractionValue(vmCart.obsTotalPayable)}"
+                    android:textColor="@color/color_green"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_payable"
+                    app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_payable"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_payable" />
+
+                <!-- Remaining-->
+                <TextView
+                    android:id="@+id/tv_lbl_total_remaining"
+                    style="@style/label_text"
+                    android:text="@string/lbl_remaining"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_lbl_total_change"
+                    app:layout_constraintHorizontal_weight="0.7"
+                    app:layout_constraintStart_toEndOf="@+id/tv_lbl_total_payable"
+                    app:layout_constraintTop_toTopOf="@+id/tv_lbl_total_payable" />
+
+                <TextView
+                    android:id="@+id/tv_val_total_remaining"
+                    style="@style/value_text"
+                    android:text="@{companion.FormattedfractionValue(vmCart.obsRemainAmount)}"
+                    android:textColor="@color/color_danger"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_remaining"
+                    app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_remaining"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_remaining" />
+
+                <!-- Change-->
+                <TextView
+                    android:id="@+id/tv_lbl_total_change"
+                    style="@style/label_text"
+                    android:text="@string/lbl_change"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_item_discount_type"
+                    app:layout_constraintHorizontal_weight="0.7"
+                    app:layout_constraintStart_toEndOf="@+id/tv_lbl_total_remaining"
+                    app:layout_constraintTop_toTopOf="@+id/tv_lbl_total_payable" />
+
+                <TextView
+                    android:id="@+id/tv_val_total_change"
+                    style="@style/value_text"
+                    android:text="@{companion.FormattedfractionValue(vmCart.obsChangeAmount)}"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_lbl_total_change"
+                    app:layout_constraintStart_toStartOf="@+id/tv_lbl_total_change"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lbl_total_change" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_generate_invoice"
+                    style="@style/normal_button"
+                    android:layout_marginTop="@dimen/app_default_margin"
+                    android:fontFamily="@font/bold"
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_14sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:text="@string/lbl_generate_invoice"
+                    android:textSize="@dimen/_12sdp"
+                    app:backgroundTint="@color/accent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_val_total_change" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/app_default_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_generate_invoice" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

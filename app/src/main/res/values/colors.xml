@@ -4,7 +4,7 @@
     <color name="background_secondary">#FFFFFF</color>
     <color name="tint">#403B57</color>
     <color name="text_primary">#403B57</color>
-    <color name="text_secondary">#565657</color>
+    <color name="text_secondary">#A1565657</color>
     <color name="accent">#FA533C</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
@@ -13,4 +13,5 @@
     <color name="color_green">#27AE60</color>
     <color name="color_ripple">#54FA533C</color>
     <color name="color_icon">#686868</color>
+    <color name="color_disable">#CAC6C6</color>
 </resources>

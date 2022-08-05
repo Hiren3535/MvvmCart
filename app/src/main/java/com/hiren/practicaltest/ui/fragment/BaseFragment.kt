@@ -14,7 +14,7 @@ import com.hiren.practicaltest.viewmodel.CartViewModel
 open class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutResId: Int) : Fragment() {
 
     val vmCart by lazy {
-        activity?.let { ViewModelProvider(it).get(CartViewModel::class.java) }
+        ViewModelProvider(requireActivity())[CartViewModel::class.java]
     }
 
     private var _binding: T? = null

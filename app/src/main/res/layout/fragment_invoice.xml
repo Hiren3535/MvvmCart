@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,7 +19,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background"
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/img_back"
@@ -65,6 +69,193 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/app_default_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/lbl_my_shop_name"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_13sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text="@string/lbl_my_shop_address"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="@font/bold"
+                    android:text="@string/lbl_sales_receipt"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text='@{String.format(@string/lbl_invoice_number, vmCart.invoiceNumber)}'
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:text='@{String.format(@string/lbl_date, vmCart.invoiceDate)}'
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="@font/regular"
+                    android:maxLines="1"
+                    android:text="@string/lbl_divider"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_lbl_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:text="@string/lbl_item_name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_lbl_price"
+                        app:layout_constraintHorizontal_weight="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_lbl_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:gravity="end"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="@dimen/_2sdp"
+                        android:text="@string/lbl_price"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_lbl_qty"
+                        app:layout_constraintHorizontal_weight="0.2"
+                        app:layout_constraintStart_toEndOf="@+id/tv_lbl_name"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_lbl_qty"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:gravity="center"
+                        android:text="@string/lbl_quantity"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_lbl_total_amount"
+                        app:layout_constraintHorizontal_weight="0.1"
+                        app:layout_constraintStart_toEndOf="@+id/tv_lbl_price"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_lbl_total_amount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bold"
+                        android:gravity="end"
+                        android:text="@string/lbl_total"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="0.3"
+                        app:layout_constraintStart_toEndOf="@+id/tv_lbl_qty"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:maxLines="1"
+                    android:text="@string/lbl_divider"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/raw_invoice_item_list" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular"
+                    android:maxLines="1"
+                    android:text="@string/lbl_divider"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/bold"
+                    android:text='@{String.format(@string/lbl_sub_total_str,companion.FormattedfractionValue(vmCart.obsTotalAmount))}'
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/regular"
+                    android:text='@{String.format(@string/lbl_total_discount,vmCart.discountAmount)}'
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/regular"
+                    android:text='@{String.format(@string/lbl_total_number_of_item,vmCart.obsQuantity)}'
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/bold"
+                    android:text='@{String.format(@string/lbl_total_str,companion.FormattedfractionValue(vmCart.obsTotalPayable))}'
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="@font/regular"
+                    android:text='@{String.format(@string/lbl_change_str,companion.FormattedfractionValue(vmCart.obsChangeAmount))}'
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/_12sdp" />
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
